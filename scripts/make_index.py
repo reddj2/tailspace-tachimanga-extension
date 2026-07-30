@@ -13,8 +13,7 @@ entry = [{
         "name": "Tailspace",
         "lang": "en",
         "id": "4704682754071289646",
-        "baseUrl": "https://tailspace.com",
-        "versionId": 1
+        "baseUrl": "https://tailspace.com"
     }]
 }]
 

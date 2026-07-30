@@ -1,16 +1,16 @@
-TAILSPACE MODERN REWRITE
+TAILSPACE REPOSITORY INDEX FIX
 
-This completely replaces the legacy 1.4 implementation with a Keiyoushi 1.6 KeiSource extension.
+Problem:
+Tachimanga could not decode the repository index because the generated source entry
+included an unsupported `versionId` property.
 
 Apply:
 1. Extract this ZIP.
-2. Copy everything inside it into your repository folder.
-3. Replace all existing files when prompted.
-4. Commit with:
-   Replace legacy source with KeiSource rewrite
-5. Push origin.
-6. Send the next Build APK result.
+2. Copy scripts/make_index.py into the repository, replacing the existing file.
+3. Commit and push.
+4. Let the GitHub Actions workflow rebuild/publish the `repo` branch.
+5. In Tachimanga add this exact URL:
 
-Important:
-This should be treated as a new implementation. A successful compile does not prove
-Tailspace selectors and reader behavior are correct; those must be tested in Tachimanga.
+https://raw.githubusercontent.com/reddj2/tailspace-tachimanga-extension/repo/index.min.json
+
+Do not use the normal github.com repository page URL.
