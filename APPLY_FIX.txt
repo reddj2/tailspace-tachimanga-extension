@@ -1,20 +1,15 @@
-TAILSPACE FIX 02
+TAILSPACE FIX 03
 
-This fixes the KSP error:
-"source {} blocks present but no @Source class found"
+Fixes:
+@Source class must derive from HttpSource
+
+The old ParsedHttpSource superclass was rejected by the current KSP source generator.
+This patch changes Tailspace to directly extend HttpSource and replaces the
+ParsedHttpSource-only selector methods with the equivalent Response parsers.
 
 Apply:
 1. Extract this ZIP.
-2. Copy everything inside it over your local repository folder.
-3. Choose Replace when prompted.
-4. In GitHub Desktop, commit:
-   Add Keiyoushi Source annotation
-5. Push origin.
-6. Wait for the workflow.
-
-Changes:
-- Adds import keiyoushi.annotation.Source
-- Adds @Source to Tailspace
-- Makes Tailspace abstract, as required by generated source registration
-- Removes the manually declared lang property because Gradle owns it
-- Bumps the extension from 1.4.1 to 1.4.2
+2. Copy its contents into your repository folder and replace existing files.
+3. Commit: Convert Tailspace to HttpSource
+4. Push origin.
+5. Send the next Build APK error, or the success screen.
