@@ -1,15 +1,16 @@
-TAILSPACE FIX 03
+TAILSPACE MODERN REWRITE
 
-Fixes:
-@Source class must derive from HttpSource
-
-The old ParsedHttpSource superclass was rejected by the current KSP source generator.
-This patch changes Tailspace to directly extend HttpSource and replaces the
-ParsedHttpSource-only selector methods with the equivalent Response parsers.
+This completely replaces the legacy 1.4 implementation with a Keiyoushi 1.6 KeiSource extension.
 
 Apply:
 1. Extract this ZIP.
-2. Copy its contents into your repository folder and replace existing files.
-3. Commit: Convert Tailspace to HttpSource
-4. Push origin.
-5. Send the next Build APK error, or the success screen.
+2. Copy everything inside it into your repository folder.
+3. Replace all existing files when prompted.
+4. Commit with:
+   Replace legacy source with KeiSource rewrite
+5. Push origin.
+6. Send the next Build APK result.
+
+Important:
+This should be treated as a new implementation. A successful compile does not prove
+Tailspace selectors and reader behavior are correct; those must be tested in Tachimanga.

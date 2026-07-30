@@ -52,7 +52,7 @@ jobs:
           mkdir -p repo/apk
           APK=$(find upstream/src/en/tailspace/build/outputs/apk -name '*.apk' | head -1)
           test -n "$APK"
-          cp "$APK" repo/apk/tachiyomi-en.tailspace-v1.4.3.apk
+          cp "$APK" repo/apk/tachiyomi-en.tailspace-v1.6.1.apk
 
       - name: Generate Tachimanga index
         run: python3 scripts/make_index.py
