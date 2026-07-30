@@ -27,11 +27,9 @@ class Tailspace : ParsedHttpSource() {
         .add("Referer", "$baseUrl/")
         .add("User-Agent", "Mozilla/5.0 (Linux; Android 13) AppleWebKit/537.36 Chrome/124 Mobile Safari/537.36")
 
-    override fun popularMangaRequest(page: Int): Request =
-        GET("$baseUrl/browse?page=$page&sort=rating", headers)
+    override fun popularMangaRequest(page: Int): Request = GET("$baseUrl/browse?page=$page&sort=rating", headers)
 
-    override fun latestUpdatesRequest(page: Int): Request =
-        GET("$baseUrl/browse?page=$page&sort=updated", headers)
+    override fun latestUpdatesRequest(page: Int): Request = GET("$baseUrl/browse?page=$page&sort=updated", headers)
 
     override fun popularMangaSelector() = "a[href^=/c/]"
     override fun latestUpdatesSelector() = popularMangaSelector()

@@ -1,0 +1,16 @@
+TAILSPACE FIX 01
+
+1. Extract this ZIP.
+2. Open your local GitHub Desktop repository folder.
+3. Copy the CONTENTS of this extracted folder into the repository folder.
+4. Choose Replace when Windows asks.
+5. In GitHub Desktop, commit the changes with:
+   Fix formatting and build workflow
+6. Click Push origin.
+7. The GitHub Action will start automatically.
+8. If it fails, send the bottom of the Build APK step.
+
+This update:
+- fixes the Spotless Kotlin formatting failure;
+- runs Spotless automatically before every build;
+- updates checkout/setup-java to Node.js 24-compatible action versions.
