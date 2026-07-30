@@ -4,10 +4,10 @@ from pathlib import Path
 entry = [{
     "name": "Tachiyomi: Tailspace",
     "pkg": "eu.kanade.tachiyomi.extension.en.tailspace",
-    "apk": "tachiyomi-en.tailspace-v1.4.1.apk",
+    "apk": "tachiyomi-en.tailspace-v1.4.2.apk",
     "lang": "en",
-    "code": 1,
-    "version": "1.4.1",
+    "code": 2,
+    "version": "1.4.2",
     "nsfw": 1,
     "sources": [{
         "name": "Tailspace",

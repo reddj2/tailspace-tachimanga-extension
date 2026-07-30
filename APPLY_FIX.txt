@@ -1,16 +1,20 @@
-TAILSPACE FIX 01
+TAILSPACE FIX 02
 
+This fixes the KSP error:
+"source {} blocks present but no @Source class found"
+
+Apply:
 1. Extract this ZIP.
-2. Open your local GitHub Desktop repository folder.
-3. Copy the CONTENTS of this extracted folder into the repository folder.
-4. Choose Replace when Windows asks.
-5. In GitHub Desktop, commit the changes with:
-   Fix formatting and build workflow
-6. Click Push origin.
-7. The GitHub Action will start automatically.
-8. If it fails, send the bottom of the Build APK step.
+2. Copy everything inside it over your local repository folder.
+3. Choose Replace when prompted.
+4. In GitHub Desktop, commit:
+   Add Keiyoushi Source annotation
+5. Push origin.
+6. Wait for the workflow.
 
-This update:
-- fixes the Spotless Kotlin formatting failure;
-- runs Spotless automatically before every build;
-- updates checkout/setup-java to Node.js 24-compatible action versions.
+Changes:
+- Adds import keiyoushi.annotation.Source
+- Adds @Source to Tailspace
+- Makes Tailspace abstract, as required by generated source registration
+- Removes the manually declared lang property because Gradle owns it
+- Bumps the extension from 1.4.1 to 1.4.2
