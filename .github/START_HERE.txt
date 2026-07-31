@@ -1,0 +1,19 @@
+TAILSPACE TAGS + FILTERS UPDATE — VERSION 1.6.6
+
+This ZIP is meant to replace the files on the MAIN branch of:
+https://github.com/reddj2/tailspace-tachimanga-extension
+
+WHAT THIS BUILD ADDS
+- Tag filtering inside Tachimanga.
+- Tap once to include a tag.
+- Tap twice to exclude a tag.
+- Multiple included tags are sent as repeated tag= parameters.
+- Multiple excluded tags are sent as repeated excludeTag= parameters.
+- The build action refreshes the current Tailspace tag IDs automatically.
+
+IMPORTANT
+Upload the CONTENTS of this ZIP to the root of the main branch. Do not upload
+one outer folder containing everything.
+
+The repo branch is generated automatically. Do not manually edit the repo
+branch.
