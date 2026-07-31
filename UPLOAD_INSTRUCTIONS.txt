@@ -1,0 +1,43 @@
+TAILSPACE CLEAN REBUILD — VERSION 1.6.4
+
+IMPORTANT:
+Delete the old repository files before uploading this package. Do not merge this
+with the old `extension/` layout.
+
+The main branch should contain only:
+.github/
+scripts/
+src/
+README.md
+UPLOAD_INSTRUCTIONS.txt
+
+STEPS:
+1. Open your GitHub repository.
+2. Stay on the main branch.
+3. Delete these old items if present:
+   extension/
+   APPLY_FIX.txt
+   old workflow files
+4. Extract this ZIP on your computer.
+5. Upload every extracted file and folder to the root of main.
+6. Commit with:
+   Rebuild Tailspace using official Keiyoushi project
+7. Open Actions.
+8. Run "Build and publish Tailspace" if it does not start automatically.
+9. Wait for every step to turn green.
+10. Switch GitHub's branch selector to repo.
+11. Confirm the repo branch contains:
+    index.json
+    index.min.json
+    apk/tachiyomi-en.tailspace-v1.6.4.apk
+12. In repository Settings > Pages, choose:
+    Source: Deploy from a branch
+    Branch: repo
+    Folder: / (root)
+13. Add this URL in Tachimanga:
+    https://reddj2.github.io/tailspace-tachimanga-extension/index.min.json
+
+WHY THIS FIXES THE GRADLEW ERROR:
+Your own repository no longer needs gradlew. GitHub Actions checks out the full
+official Keiyoushi build project, which contains gradlew, Gradle build logic,
+libraries, and the extension compiler.

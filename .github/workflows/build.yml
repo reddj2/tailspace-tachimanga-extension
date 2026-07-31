@@ -1,4 +1,4 @@
-name: Build and publish Tailspace extension
+name: Build and publish Tailspace
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
       - main
     paths:
       - ".github/workflows/build.yml"
-      - "extension/**"
+      - "src/en/tailspace/**"
       - "scripts/**"
 
 permissions:
@@ -18,10 +18,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check out repository
+      - name: Check out Tailspace repository
         uses: actions/checkout@v4
+        with:
+          path: tailspace-repo
 
-      - name: Set up Java 17
+      - name: Check out official Keiyoushi build project
+        uses: actions/checkout@v4
+        with:
+          repository: keiyoushi/extensions-source
+          ref: main
+          path: extensions-source
+          fetch-depth: 1
+
+      - name: Install Tailspace module into build project
+        run: |
+          rm -rf extensions-source/src/en/tailspace
+          mkdir -p extensions-source/src/en
+          cp -R tailspace-repo/src/en/tailspace extensions-source/src/en/tailspace
+
+      - name: Set up Java
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -30,28 +46,47 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Make Gradle wrapper executable
-        run: chmod +x ./gradlew
-
-      - name: Build extension APK
-        run: ./gradlew :extension:assembleDebug
-
-      - name: Generate repository index
-        run: python3 scripts/make_index.py
-
-      - name: Verify repository output
+      - name: Format Tailspace module
+        working-directory: extensions-source
         run: |
-          test -f repo/index.json
-          test -f repo/index.min.json
-          test -f repo/apk/tachiyomi-en.tailspace-v1.6.3.apk
-          python3 -m json.tool repo/index.min.json >/dev/null
-          find repo -maxdepth 3 -type f -print
+          chmod +x ./gradlew
+          ./gradlew :src:en:tailspace:spotlessApply
+
+      - name: Build Tailspace APK
+        working-directory: extensions-source
+        run: ./gradlew :src:en:tailspace:assembleDebug
+
+      - name: Locate built APK
+        id: apk
+        shell: bash
+        run: |
+          APK_PATH="$(find extensions-source/src/en/tailspace/build/outputs/apk -type f -name '*.apk' | head -n 1)"
+          if [ -z "$APK_PATH" ]; then
+            echo "No APK was produced."
+            find extensions-source/src/en/tailspace/build -maxdepth 6 -type f || true
+            exit 1
+          fi
+          echo "Found APK: $APK_PATH"
+          echo "path=$APK_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: Generate Tachimanga repository
+        run: |
+          cd tailspace-repo
+          python3 scripts/make_index.py "../${{ steps.apk.outputs.path }}"
+
+      - name: Verify repository
+        run: |
+          test -f tailspace-repo/repo/index.json
+          test -f tailspace-repo/repo/index.min.json
+          test -f tailspace-repo/repo/apk/tachiyomi-en.tailspace-v1.6.4.apk
+          python3 -m json.tool tailspace-repo/repo/index.min.json >/dev/null
+          find tailspace-repo/repo -maxdepth 3 -type f -print
 
       - name: Publish repo branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: repo
-          publish_dir: ./repo
+          publish_dir: ./tailspace-repo/repo
           force_orphan: true
           enable_jekyll: false

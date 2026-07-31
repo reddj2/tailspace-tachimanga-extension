@@ -1,20 +1,19 @@
 import json
 import shutil
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-REPO = ROOT / "repo"
-APK_SOURCE = ROOT / "extension" / "build" / "outputs" / "apk" / "debug" / "extension-debug.apk"
-APK_NAME = "tachiyomi-en.tailspace-v1.6.3.apk"
-APK_DESTINATION = REPO / "apk" / APK_NAME
+INPUT_APK = Path(sys.argv[1]).resolve()
+OUTPUT = ROOT / "repo"
+APK_NAME = "tachiyomi-en.tailspace-v1.6.4.apk"
+APK_DEST = OUTPUT / "apk" / APK_NAME
 
-REPO.mkdir(parents=True, exist_ok=True)
-APK_DESTINATION.parent.mkdir(parents=True, exist_ok=True)
+if not INPUT_APK.is_file():
+    raise FileNotFoundError(f"APK not found: {INPUT_APK}")
 
-if not APK_SOURCE.exists():
-    raise FileNotFoundError(f"Built APK was not found: {APK_SOURCE}")
-
-shutil.copy2(APK_SOURCE, APK_DESTINATION)
+APK_DEST.parent.mkdir(parents=True, exist_ok=True)
+shutil.copy2(INPUT_APK, APK_DEST)
 
 index = [
     {
@@ -22,8 +21,8 @@ index = [
         "pkg": "eu.kanade.tachiyomi.extension.en.tailspace",
         "apk": f"apk/{APK_NAME}",
         "lang": "en",
-        "code": 3,
-        "version": "1.6.3",
+        "code": 4,
+        "version": "1.6.4",
         "nsfw": 1,
         "hasReadme": 0,
         "hasChangelog": 0,
@@ -39,16 +38,16 @@ index = [
     }
 ]
 
-(REPO / "index.json").write_text(
+OUTPUT.mkdir(parents=True, exist_ok=True)
+(OUTPUT / "index.json").write_text(
     json.dumps(index, indent=2, ensure_ascii=False) + "\n",
     encoding="utf-8",
 )
-(REPO / "index.min.json").write_text(
+(OUTPUT / "index.min.json").write_text(
     json.dumps(index, separators=(",", ":"), ensure_ascii=False),
     encoding="utf-8",
 )
-(REPO / ".nojekyll").touch()
+(OUTPUT / ".nojekyll").touch()
 
-print(f"Created {REPO / 'index.json'}")
-print(f"Created {REPO / 'index.min.json'}")
-print(f"Copied APK to {APK_DESTINATION}")
+print(f"Published APK: {APK_DEST}")
+print(f"Published index: {OUTPUT / 'index.min.json'}")
