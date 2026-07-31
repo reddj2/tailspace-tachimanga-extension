@@ -1,4 +1,4 @@
-TAILSPACE CLEAN REBUILD — VERSION 1.6.4
+TAILSPACE CLEAN REBUILD — VERSION 1.6.5
 
 IMPORTANT:
 Delete the old repository files before uploading this package. Do not merge this
@@ -29,7 +29,7 @@ STEPS:
 11. Confirm the repo branch contains:
     index.json
     index.min.json
-    apk/tachiyomi-en.tailspace-v1.6.4.apk
+    apk/tachiyomi-en.tailspace-v1.6.5.apk
 12. In repository Settings > Pages, choose:
     Source: Deploy from a branch
     Branch: repo

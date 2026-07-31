@@ -6,7 +6,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_APK = Path(sys.argv[1]).resolve()
 OUTPUT = ROOT / "repo"
-APK_NAME = "tachiyomi-en.tailspace-v1.6.4.apk"
+APK_NAME = "tachiyomi-en.tailspace-v1.6.5.apk"
 APK_DEST = OUTPUT / "apk" / APK_NAME
 
 if not INPUT_APK.is_file():
@@ -21,8 +21,8 @@ index = [
         "pkg": "eu.kanade.tachiyomi.extension.en.tailspace",
         "apk": f"apk/{APK_NAME}",
         "lang": "en",
-        "code": 4,
-        "version": "1.6.4",
+        "code": 5,
+        "version": "1.6.5",
         "nsfw": 1,
         "hasReadme": 0,
         "hasChangelog": 0,

@@ -50,11 +50,11 @@ jobs:
         working-directory: extensions-source
         run: |
           chmod +x ./gradlew
-          ./gradlew :src:en:tailspace:spotlessApply
+          ./gradlew src:en:tailspace:spotlessApply
 
       - name: Build Tailspace APK
         working-directory: extensions-source
-        run: ./gradlew :src:en:tailspace:assembleDebug
+        run: ./gradlew src:en:tailspace:assembleDebug
 
       - name: Locate built APK
         id: apk
@@ -78,7 +78,7 @@ jobs:
         run: |
           test -f tailspace-repo/repo/index.json
           test -f tailspace-repo/repo/index.min.json
-          test -f tailspace-repo/repo/apk/tachiyomi-en.tailspace-v1.6.4.apk
+          test -f tailspace-repo/repo/apk/tachiyomi-en.tailspace-v1.6.5.apk
           python3 -m json.tool tailspace-repo/repo/index.min.json >/dev/null
           find tailspace-repo/repo -maxdepth 3 -type f -print
 

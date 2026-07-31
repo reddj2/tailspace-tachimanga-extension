@@ -1,0 +1,56 @@
+FINAL CLEAN TAILSPACE UPLOAD — VERSION 1.6.5
+
+This package follows the current Keiyoushi module format:
+src/en/tailspace/build.gradle.kts
+src/en/tailspace/src/eu/kanade/tachiyomi/extension/en/tailspace/Tailspace.kt
+
+Your small repository does NOT need gradlew. The GitHub Action downloads the
+official keiyoushi/extensions-source project, which supplies Gradle, the wrapper,
+compiler, libraries, and current build configuration.
+
+DESKTOP CLEANUP
+1. Delete everything inside the old desktop working folder.
+2. Extract this ZIP into that now-empty folder.
+3. Turn on “Hidden items” in Windows File Explorer so you can see .github.
+4. Confirm the folder contains exactly:
+   .github
+   scripts
+   src
+   README.md
+   START_HERE.txt
+   UPLOAD_INSTRUCTIONS.txt
+
+GITHUB CLEANUP
+1. Open your repository and select the main branch.
+2. Delete all old files and folders from main.
+3. Upload the CONTENTS of this extracted folder to the root of main.
+   Do not upload the outer folder itself.
+4. Commit with:
+   Clean rebuild using official Keiyoushi template
+
+BUILD
+1. Open the Actions tab.
+2. Open “Build and publish Tailspace”.
+3. Run the workflow if it did not start automatically.
+4. Wait until every step is green.
+
+VERIFY THE REPO BRANCH
+Switch from main to repo. It must contain:
+   index.json
+   index.min.json
+   .nojekyll
+   apk/tachiyomi-en.tailspace-v1.6.5.apk
+
+GITHUB PAGES
+Settings > Pages:
+   Source: Deploy from a branch
+   Branch: repo
+   Folder: / (root)
+
+TACHIMANGA REPOSITORY URL
+https://reddj2.github.io/tailspace-tachimanga-extension/index.min.json
+
+EXPECTED INDEX VALUES
+version: 1.6.5
+code: 5
+apk: apk/tachiyomi-en.tailspace-v1.6.5.apk
