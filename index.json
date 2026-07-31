@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Tachiyomi: Tailspace",
+    "pkg": "eu.kanade.tachiyomi.extension.en.tailspace",
+    "apk": "apk/tachiyomi-en.tailspace-v1.6.5.apk",
+    "lang": "en",
+    "code": 5,
+    "version": "1.6.5",
+    "nsfw": 1,
+    "hasReadme": 0,
+    "hasChangelog": 0,
+    "sources": [
+      {
+        "name": "Tailspace",
+        "lang": "en",
+        "id": "4704682754071289646",
+        "baseUrl": "https://tailspace.com",
+        "versionId": 1
+      }
+    ]
+  }
+]
